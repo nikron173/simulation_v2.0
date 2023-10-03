@@ -14,11 +14,18 @@ public class Simulation {
     }
 
     public void startSimulation(){
-        int i = 0;
-        while (i != 5){
-            i++;
+        int step = 0;
+        while (true){
+            step++;
             nextTurn();
             Render.renderMap(map);
+            if (actions.checkWinHerbivore(map)){
+                System.out.println("Win Herbivores. Done step: " + step);
+                break;
+            } else if (actions.checkWinPredator(map)) {
+                System.out.println("Win Predators. Done step: " + step);
+                break;
+            }
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e){

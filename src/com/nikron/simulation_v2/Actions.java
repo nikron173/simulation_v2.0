@@ -2,6 +2,7 @@ package com.nikron.simulation_v2;
 
 import com.nikron.simulation_v2.entity.*;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class Actions {
@@ -16,11 +17,11 @@ public class Actions {
     }
 
     public void turnActions(Map map){
-        for (var entry : map.getMap().entrySet()) {
-            if (entry.getValue() instanceof Creature){
-                ((Creature) entry.getValue()).makeMove();
-            }
+        for (var entry : map.getAllCreatures()) {
+            // вопросики по поводу карты (скорее всего нужно создать две мапы), чтобы не было коллизий
+            entry.makeMove(map);
         }
+
         if (!checkIsResource(map)){
             addResourceObject(map);
         }
@@ -46,12 +47,20 @@ public class Actions {
                     case "Grass" -> map.addEntityMap(coordinates, new Grass(true, true, coordinates));
                     case "Tree" -> map.addEntityMap(coordinates, new Tree(true, false, coordinates));
                     case "Herbivore" -> map.addEntityMap(coordinates, new Herbivore(false, false,
-                            coordinates, 5, 1, 0, true));
+                            coordinates, 2, 1, 0, true));
                     case "Predator" -> map.addEntityMap(coordinates, new Predator(false, false,
-                            coordinates, 5, 1, 1, false));
+                            coordinates, 2, 1, 1, false));
                 }
                 i++;
             }
         }
+    }
+
+    public boolean checkWinHerbivore(Map map){
+        return map.getAllPredator().isEmpty();
+    }
+
+    public boolean checkWinPredator(Map map){
+        return map.getAllHerbivore().isEmpty();
     }
 }

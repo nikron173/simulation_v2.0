@@ -10,7 +10,7 @@ public class Render {
             for (int j = 0; j < 8; j++) {
                 Entity entity = map.getEntityMap(new Coordinates(j, i));
                 if (entity == null){
-                    System.out.print(". ");
+                    System.out.print("_");
                 } else {
                     System.out.print(entity);
                 }

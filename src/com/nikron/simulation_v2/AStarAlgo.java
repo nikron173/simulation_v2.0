@@ -38,7 +38,7 @@ public class AStarAlgo {
     //T end - конечная точка
     //List<Entity> entities - список всех объектов
     //Алгоритм возвращает список координатов, по которому надо будет пройтись до конечной точки
-    public static <T> List<Coordinates> aStar(T start, T end, HashMap<Coordinates, Entity> map){
+    public static <T> List<Coordinates> aStar(T start, T end, java.util.Map<Coordinates, Entity> map){
         AStarAlgo startAStarAlgo = null;
         AStarAlgo endAStarAlgo = null;
 
@@ -78,7 +78,7 @@ public class AStarAlgo {
                     // для примера пока задано 6х8
                     if (x < 0 || x >= 8 || y < 0 || y >= 6) continue;
                     //все является препятствием
-                    if (map.get(new Coordinates(x, y)) != null) continue;
+                    if (map.get(new Coordinates(x, y)) != null && !end.equals(new Coordinates(x, y))) continue;
 
                     neighbors.add(new AStarAlgo(x, y));
                 }

@@ -7,7 +7,7 @@ public abstract class Entity {
     //object resource or not
     private final boolean isResourceObject;
 
-    private final Coordinates coordinates;
+    private Coordinates coordinates;
 
     public Entity(boolean isStaticObject, boolean isResourceObject, Coordinates coordinates){
         this.isStaticObject = isStaticObject;
@@ -24,5 +24,9 @@ public abstract class Entity {
 
     public Coordinates getCoordinates() {
         return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates){
+        this.coordinates = coordinates;
     }
 }
