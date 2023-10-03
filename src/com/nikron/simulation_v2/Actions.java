@@ -37,7 +37,7 @@ public class Actions {
                 new Grass(true, true, new Coordinates(1,1)));
     }
 
-    private void generatedEntity(Map map, Class clazz){
+    private void generatedEntity(Map map, Class<?> clazz){
         for (int i = 0; i < 5;) {
             Coordinates coordinates = new Coordinates(random.nextInt(8), random.nextInt(6));
             if (map.getEntityMap(coordinates) == null){
