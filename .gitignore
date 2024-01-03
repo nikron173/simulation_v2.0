@@ -2,6 +2,8 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea/
+Simulation_v2.0.iml
 
 ### Eclipse ###
 .apt_generated

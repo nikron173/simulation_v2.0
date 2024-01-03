@@ -1,13 +1,12 @@
 package com.nikron.simulation_v2.entity;
 
 public class Rock extends Entity{
-
-    public Rock(boolean isStaticObject, boolean isResourceObject, Coordinates coordinates) {
-        super(isStaticObject, isResourceObject, coordinates);
+    public Rock(Point point) {
+        super(point);
     }
 
     @Override
     public String toString() {
-        return "\uD83D\uDDFF";
+        return "R";
     }
 }

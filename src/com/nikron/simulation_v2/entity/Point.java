@@ -1,11 +1,10 @@
 package com.nikron.simulation_v2.entity;
 
-//Class for coordinates object
-public class Coordinates {
+public class Point {
     private int x;
     private int y;
 
-    public Coordinates(int x, int y) {
+    public Point(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -31,10 +30,10 @@ public class Coordinates {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Coordinates that = (Coordinates) o;
+        Point point = (Point) o;
 
-        if (x != that.x) return false;
-        return y == that.y;
+        if (x != point.x) return false;
+        return y == point.y;
     }
 
     @Override

@@ -1,54 +1,31 @@
 package com.nikron.simulation_v2;
 
-import com.nikron.simulation_v2.entity.*;
+import com.nikron.simulation_v2.entity.Creature;
+import com.nikron.simulation_v2.entity.Entity;
+import com.nikron.simulation_v2.entity.Point;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class Map {
-    private final java.util.Map<Coordinates, Entity> map = new HashMap<>();
+    private java.util.Map<Point, Entity> entityMap;
 
-    public java.util.Map<Coordinates, Entity> getMap() {
-        return map;
+    public Map(java.util.Map<Point, Entity> entityMap) {
+        this.entityMap = entityMap;
     }
 
-    public void addEntityMap(Coordinates coordinates, Entity entity){
-        map.put(coordinates, entity);
+    public void addEntity(Point point, Entity entity){
+        entityMap.put(point, entity);
+    }
+    public Entity getEntity(Point point){
+        return entityMap.get(point);
     }
 
-    public void removeEntityMap(Coordinates coordinates){
-        map.remove(coordinates);
+    public void removeEntity(Point point){
+        entityMap.remove(point);
     }
 
-    public Entity getEntityMap(Coordinates coordinates){
-        return map.get(coordinates);
-    }
-
-    public List<Creature> getAllCreatures(){
-        return map.values().stream()
-                .filter(entity -> entity instanceof Creature)
-                .map(x -> (Creature) x)
-                .toList();
-    }
-
-    public List<Herbivore> getAllHerbivore(){
-        return map.values().stream()
-                .filter(entity -> entity instanceof Herbivore)
-                .map(x -> (Herbivore) x)
-                .toList();
-    }
-
-    public List<Predator> getAllPredator(){
-        return map.values().stream()
-                .filter(entity -> entity instanceof Predator)
-                .map(x -> (Predator) x)
-                .toList();
-    }
-
-    public List<Grass> getAllGrass(){
-        return map.values().stream()
-                .filter(entity -> entity instanceof Grass)
-                .map(x -> (Grass) x)
-                .toList();
+    public List<Creature> getCreatures(){
+        return entityMap.values().stream().filter(x -> x instanceof Creature).map(x -> (Creature) x).toList();
     }
 }
