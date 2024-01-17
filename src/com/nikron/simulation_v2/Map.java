@@ -1,5 +1,6 @@
 package com.nikron.simulation_v2;
 
+import com.nikron.simulation_v2.entity.Creature;
 import com.nikron.simulation_v2.entity.Entity;
 import com.nikron.simulation_v2.entity.Point;
 
@@ -34,5 +35,10 @@ public class Map {
 
     public java.util.Map<Point, Entity> getEntityMap() {
         return entityMap;
+    }
+
+    public void setEntity(Point point, Entity entity) {
+        entity.setPoint(point);
+        entityMap.put(point, entity);
     }
 }

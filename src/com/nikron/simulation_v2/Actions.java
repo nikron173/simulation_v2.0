@@ -56,10 +56,38 @@ public class Actions {
                 }
             }
             if (Objects.nonNull(path) && !path.isEmpty()){
-                herbivore.makeMove(path);
+                herbivore.makeMove(path, map);
+            }
+        }
+
+        for(Predator predator : map.getCreatures(Predator.class)){
+            List<Point> path = null;
+            for(Herbivore herbivore : map.getCreatures(Herbivore.class)){
+                List<Point> tmpPath = getPathToEntity(predator, herbivore);
+                if (path == null || !tmpPath.isEmpty() && tmpPath.size() < path.size()){
+                    path = tmpPath;
+                }
+            }
+            if (Objects.nonNull(path) && !path.isEmpty()){
+                predator.makeMove(path, map);
             }
         }
     }
+
+//    private <T> void ll(Class<T> clazz1, Class<T> clazz2){
+//        for(clazz1 herbivore : map.getCreatures(T)){
+//            List<Point> path = null;
+//            for(Grass grass : map.getCreatures(Grass.class)){
+//                List<Point> tmpPath = getPathToEntity(herbivore, grass);
+//                if (path == null || !tmpPath.isEmpty() && tmpPath.size() < path.size()){
+//                    path = tmpPath;
+//                }
+//            }
+//            if (Objects.nonNull(path) && !path.isEmpty()){
+//                herbivore.makeMove(path, map);
+//            }
+//        }
+//    }
 
     private List<Entity> generateEntity(Class clazz, int count) {
         List<Entity> genEntity = new ArrayList<>();

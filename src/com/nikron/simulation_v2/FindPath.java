@@ -40,7 +40,6 @@ public class FindPath {
                     p = parent[p.getX() * maxY + p.getY()];
                 }
                 Collections.reverse(path);
-                path.remove(start.getPoint());
                 return path;
             }
             List<Point> generatedPoints = new ArrayList<>();
