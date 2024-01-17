@@ -10,8 +10,6 @@ import com.nikron.simulation_v2.entity.Rock;
 import com.nikron.simulation_v2.entity.Tree;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -31,7 +29,7 @@ public class Actions {
     }
 
     public void initActions() {
-        int entityCount = ((int) Math.sqrt(maxX * maxY)) - 2;
+        int entityCount = ((int) Math.sqrt(maxX * maxY)) - 3;
         List<Entity> trees = generateEntity(Tree.class, entityCount);
         List<Entity> grasses = generateEntity(Grass.class, entityCount);
         List<Entity> rocks = generateEntity(Rock.class, entityCount);
@@ -59,7 +57,7 @@ public class Actions {
                     path = tmpPath;
                 }
             }
-            System.out.println();
+            System.out.println(path);
         }
     }
 
@@ -68,45 +66,45 @@ public class Actions {
         switch (clazz.getSimpleName()) {
             case "Grass" -> {
                 for (int i = 0; i < count; i++) {
-                    Point tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                    Point tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     while (Objects.nonNull(map.getEntity(tmpPoint))) {
-                        tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                        tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     }
                     map.addEntity(tmpPoint, new Grass(tmpPoint));
                 }
             }
             case "Rock" -> {
                 for (int i = 0; i < count; i++) {
-                    Point tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                    Point tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     while (Objects.nonNull(map.getEntity(tmpPoint))) {
-                        tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                        tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     }
                     map.addEntity(tmpPoint, new Rock(tmpPoint));
                 }
             }
             case "Tree" -> {
                 for (int i = 0; i < count; i++) {
-                    Point tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                    Point tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     while (Objects.nonNull(map.getEntity(tmpPoint))) {
-                        tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                        tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     }
                     map.addEntity(tmpPoint, new Tree(tmpPoint));
                 }
             }
             case "Herbivore" -> {
                 for (int i = 0; i < count; i++) {
-                    Point tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                    Point tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     while (Objects.nonNull(map.getEntity(tmpPoint))) {
-                        tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                        tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     }
                     map.addEntity(tmpPoint, new Herbivore(tmpPoint, 1, 3));
                 }
             }
             case "Predator" -> {
                 for (int i = 0; i < count; i++) {
-                    Point tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                    Point tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     while (Objects.nonNull(map.getEntity(tmpPoint))) {
-                        tmpPoint = new Point(random.nextInt(maxX + 1), random.nextInt(maxY + 1));
+                        tmpPoint = new Point(random.nextInt(maxX), random.nextInt(maxY));
                     }
                     map.addEntity(tmpPoint, new Predator(tmpPoint, 1, 2, 1));
                 }

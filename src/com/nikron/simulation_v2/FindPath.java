@@ -25,22 +25,23 @@ public class FindPath {
         Queue<Point> queue = new ArrayDeque<>();
         List<Point> path = new ArrayList<>();
         List<Point> visited = new ArrayList<>();
-        TreePoint parent = new TreePoint(start.getPoint());
 
         queue.add(start.getPoint());
-        path.add(start.getPoint());
         visited.add(start.getPoint());
+        Point[] parent = new Point[maxX * maxY];
+        parent[start.getPoint().getX() * maxY + start.getPoint().getY()] = null;
+
         while (!queue.isEmpty()) {
-            Point currentPoint = queue.remove();
+            Point currentPoint = queue.poll();
             if (currentPoint.equals(end.getPoint())) {
-                while (parent != null) {
-                    path.add(parent.getValue());
-                    parent = parent.getParent();
+                Point p = end.getPoint();
+                while (p != null) {
+                    path.add(p);
+                    p = parent[p.getX() * maxY + p.getY()];
                 }
                 Collections.reverse(path);
                 return path;
             }
-            //Generated new points
             List<Point> generatedPoints = new ArrayList<>();
             generatedPoints.add(new Point(currentPoint.getX() - 1, currentPoint.getY()));
             generatedPoints.add(new Point(currentPoint.getX(), currentPoint.getY() - 1));
@@ -50,7 +51,7 @@ public class FindPath {
                 Point tmpPoint = generatedPoints.get(i);
                 if (tmpPoint.getX() < 0 || tmpPoint.getY() < 0 ||
                         tmpPoint.getX() >= maxX || tmpPoint.getY() >= maxY ||
-                        Objects.nonNull(map.getEntity(tmpPoint))) {
+                        (Objects.nonNull(map.getEntity(tmpPoint)) && !tmpPoint.equals(end.getPoint()))) {
                     generatedPoints.remove(tmpPoint);
                     i--;
                 }
@@ -60,14 +61,10 @@ public class FindPath {
                 if (!visited.contains(p)) {
                     visited.add(p);
                     queue.add(p);
-                    TreePoint tp = new TreePoint(p);
-                    tp.setParent(parent);
-                    parent.setChild(tp);
-                    parent = tp;
+                    parent[p.getX() * maxY + p.getY()] = currentPoint;
                 }
             }
         }
-        System.out.println(path);
         return path;
     }
 }

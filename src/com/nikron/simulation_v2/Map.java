@@ -1,6 +1,5 @@
 package com.nikron.simulation_v2;
 
-import com.nikron.simulation_v2.entity.Creature;
 import com.nikron.simulation_v2.entity.Entity;
 import com.nikron.simulation_v2.entity.Point;
 
