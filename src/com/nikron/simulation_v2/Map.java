@@ -3,6 +3,7 @@ package com.nikron.simulation_v2;
 import com.nikron.simulation_v2.entity.Entity;
 import com.nikron.simulation_v2.entity.Point;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,11 +22,14 @@ public class Map {
         entityMap.remove(point);
     }
 
-    public List<Object> getCreatures(Class clazz) {
-        return entityMap.values()
-                .stream()
-                .filter(clazz::isInstance)
-                .map(x -> clazz.cast(x)).toList();
+    public <T> List<T> getCreatures(Class<T> clazz) {
+        List<T> objects = new ArrayList<>();
+        for (Entity entity : entityMap.values()) {
+            if (clazz.isInstance(entity)) {
+                objects.add((T) entity);
+            }
+        }
+        return objects;
     }
 
     public java.util.Map<Point, Entity> getEntityMap() {

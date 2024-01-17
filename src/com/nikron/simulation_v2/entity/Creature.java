@@ -1,5 +1,7 @@
 package com.nikron.simulation_v2.entity;
 
+import java.util.List;
+
 public abstract class Creature extends Entity {
     private final int speed;
     private final int heath;
@@ -10,8 +12,10 @@ public abstract class Creature extends Entity {
         this.heath = heath;
     }
 
-    public void makeMove() {
+    public void makeMove(List<Point> path) {
+        if (path.size() == 1){
 
+        }
     }
 
     protected int getSpeed() {

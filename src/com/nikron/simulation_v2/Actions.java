@@ -47,17 +47,17 @@ public class Actions {
     }
 
     public void turnActions() {
-        for(Object o : map.getCreatures(Herbivore.class)){
-            Creature creature = (Creature) o;
+        for(Herbivore herbivore : map.getCreatures(Herbivore.class)){
             List<Point> path = null;
-            for(Object ot : map.getCreatures(Grass.class)){
-                Grass grass = (Grass) ot;
-                List<Point> tmpPath = getPathToEntity(creature, grass);
+            for(Grass grass : map.getCreatures(Grass.class)){
+                List<Point> tmpPath = getPathToEntity(herbivore, grass);
                 if (path == null || !tmpPath.isEmpty() && tmpPath.size() < path.size()){
                     path = tmpPath;
                 }
             }
-            System.out.println(path);
+            if (Objects.nonNull(path) && !path.isEmpty()){
+                herbivore.makeMove(path);
+            }
         }
     }
 
