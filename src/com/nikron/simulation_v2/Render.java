@@ -7,20 +7,20 @@ import java.util.Map;
 
 public class Render {
     private java.util.Map<Point, Entity> map;
-    private int height;
-    private int weight;
+    private int maxY;
+    private int maxX;
 
-    public Render(Map<Point, Entity> map, int height, int weight) {
+    public Render(Map<Point, Entity> map, int maxX, int maxY) {
         this.map = map;
-        this.height = height;
-        this.weight = weight;
+        this.maxY = maxY;
+        this.maxX = maxX;
     }
 
-    public void render(){
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < weight; j++) {
+    public void render() {
+        for (int i = 0; i < maxY; i++) {
+            for (int j = 0; j < maxX; j++) {
                 Point point = new Point(j, i);
-                if (map.containsKey(point)){
+                if (map.containsKey(point)) {
                     System.out.print(map.get(point).toString());
                 } else {
                     System.out.print("_");
@@ -28,5 +28,6 @@ public class Render {
             }
             System.out.println();
         }
+        System.out.println("==============================================");
     }
 }

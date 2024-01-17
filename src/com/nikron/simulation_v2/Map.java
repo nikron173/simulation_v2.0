@@ -8,24 +8,28 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Map {
-    private java.util.Map<Point, Entity> entityMap;
+    private java.util.Map<Point, Entity> entityMap = new HashMap<>();
 
-    public Map(java.util.Map<Point, Entity> entityMap) {
-        this.entityMap = entityMap;
-    }
-
-    public void addEntity(Point point, Entity entity){
+    public void addEntity(Point point, Entity entity) {
         entityMap.put(point, entity);
     }
-    public Entity getEntity(Point point){
+
+    public Entity getEntity(Point point) {
         return entityMap.get(point);
     }
 
-    public void removeEntity(Point point){
+    public void removeEntity(Point point) {
         entityMap.remove(point);
     }
 
-    public List<Creature> getCreatures(){
-        return entityMap.values().stream().filter(x -> x instanceof Creature).map(x -> (Creature) x).toList();
+    public List<Object> getCreatures(Class clazz) {
+        return entityMap.values()
+                .stream()
+                .filter(clazz::isInstance)
+                .map(x -> clazz.cast(x)).toList();
+    }
+
+    public java.util.Map<Point, Entity> getEntityMap() {
+        return entityMap;
     }
 }
