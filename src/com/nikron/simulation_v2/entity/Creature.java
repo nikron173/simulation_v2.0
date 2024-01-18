@@ -18,8 +18,8 @@ public abstract class Creature extends Entity {
         int len = Math.min(path.size(), getSpeed());
 
         map.removeEntity(this.getPoint());
-        for (int i = 1; i <= len; i++){
-            map.removeEntity(path.get(i-1));
+        for (int i = 1; i <= len; i++) {
+            map.removeEntity(path.get(i - 1));
             map.setEntity(path.get(i), this);
         }
     }

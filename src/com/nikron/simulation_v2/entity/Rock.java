@@ -5,8 +5,4 @@ public class Rock extends Entity {
         super(point);
     }
 
-    @Override
-    public String toString() {
-        return "R";
-    }
 }

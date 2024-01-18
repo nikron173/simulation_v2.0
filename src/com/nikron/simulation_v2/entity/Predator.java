@@ -13,8 +13,4 @@ public class Predator extends Creature {
         return damage;
     }
 
-    @Override
-    public String toString() {
-        return "P";
-    }
 }

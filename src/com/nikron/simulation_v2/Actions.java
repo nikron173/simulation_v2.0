@@ -72,22 +72,10 @@ public class Actions {
                 predator.makeMove(path, map);
             }
         }
+        if (map.getCreatures(Grass.class).isEmpty()) {
+            generateEntity(Grass.class, 2);
+        }
     }
-
-//    private <T> void ll(Class<T> clazz1, Class<T> clazz2){
-//        for(clazz1 herbivore : map.getCreatures(T)){
-//            List<Point> path = null;
-//            for(Grass grass : map.getCreatures(Grass.class)){
-//                List<Point> tmpPath = getPathToEntity(herbivore, grass);
-//                if (path == null || !tmpPath.isEmpty() && tmpPath.size() < path.size()){
-//                    path = tmpPath;
-//                }
-//            }
-//            if (Objects.nonNull(path) && !path.isEmpty()){
-//                herbivore.makeMove(path, map);
-//            }
-//        }
-//    }
 
     private List<Entity> generateEntity(Class clazz, int count) {
         List<Entity> genEntity = new ArrayList<>();

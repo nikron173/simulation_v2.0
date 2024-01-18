@@ -2,7 +2,9 @@ package com.nikron.simulation_v2;
 
 import com.nikron.simulation_v2.entity.Creature;
 import com.nikron.simulation_v2.entity.Entity;
+import com.nikron.simulation_v2.entity.Herbivore;
 import com.nikron.simulation_v2.entity.Point;
+import com.nikron.simulation_v2.entity.Predator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,5 +42,13 @@ public class Map {
     public void setEntity(Point point, Entity entity) {
         entity.setPoint(point);
         entityMap.put(point, entity);
+    }
+
+    public boolean isWinHerbivores(){
+        return getCreatures(Predator.class).isEmpty();
+    }
+
+    public boolean isWinPredators(){
+        return getCreatures(Herbivore.class).isEmpty();
     }
 }

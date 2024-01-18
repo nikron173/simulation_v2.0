@@ -6,8 +6,4 @@ public class Tree extends Entity {
         super(point);
     }
 
-    @Override
-    public String toString() {
-        return "T";
-    }
 }

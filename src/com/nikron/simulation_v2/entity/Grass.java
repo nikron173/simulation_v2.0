@@ -4,9 +4,4 @@ public class Grass extends Entity {
     public Grass(Point point) {
         super(point);
     }
-
-    @Override
-    public String toString() {
-        return "G";
-    }
 }

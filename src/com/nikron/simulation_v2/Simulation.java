@@ -1,11 +1,14 @@
 package com.nikron.simulation_v2;
 
+import com.nikron.simulation_v2.util.ClearConsole;
+
 public class Simulation {
     private Map map;
     private Actions actions;
     private Render render;
     private int maxX;
     private int maxY;
+    private volatile boolean isPause = false;
 
     public Simulation(int maxX, int maxY) {
         this.maxX = maxX;
@@ -16,22 +19,36 @@ public class Simulation {
         this.render = new Render(map.getEntityMap(), maxX, maxY);
     }
 
-    public void startSimulation(){
+    public void startSimulation() {
         try {
-            while (true){
+            int round = 1;
+            while (true) {
+                while (isPause){
+                    Thread.sleep(1000);
+                }
+                System.out.println("Round " + round);
                 nextTurn();
-                Thread.sleep(5000);
+                if (map.isWinHerbivores()) {
+                    System.out.println("Win Herbivores");
+                    break;
+                }
+                if (map.isWinPredators()) {
+                    System.out.println("Win Predators");
+                    break;
+                }
+                round++;
+                Thread.sleep(3000);
+//                ClearConsole.clear();
             }
-        } catch (InterruptedException e){
-            System.out.println(e);
+        } catch (InterruptedException e) {
         }
     }
 
-    public void pauseSimulation(){
-
+    public void pauseSimulation(boolean state) {
+        isPause = state;
     }
 
-    private void nextTurn(){
+    private synchronized void nextTurn() {
         actions.turnActions();
         render.render();
     }
